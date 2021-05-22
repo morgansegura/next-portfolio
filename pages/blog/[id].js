@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useMedia } from 'react-use'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -7,14 +7,25 @@ import ContentModal from '@support/modal/ContentModal'
 import Page from '@components/page/Page'
 import PageHead from '@components/page/PageHead'
 import BlogLanding from '@components/blog/BlogLanding'
-import BlogPost from '@components/blog/BlogPost'
+import BlogSingle from '@components/blog/BlogSingle'
+import { useGetData } from '@/actions'
 
-const BlogPage = ({ posts, post, currentPage, prevPage, nextPage }) => {
+const BlogSinglePage = () => {
 	const router = useRouter()
-
 	const routeBase = `/portfolio`
 	const isMobile = useMedia('(max-width: 767px)', false)
 	const modalRef = useRef(null)
+
+	const {
+		data: post,
+		error,
+		loading,
+	} = useGetData(router.query.id ? `/api/v1/posts/${router.query.id}` : null)
+
+	const { data: posts } = useGetData(router.query.id ? `/api/v1/posts` : null)
+
+	let nextPage = post?.id < posts?.length ? post?.id + 1 : 1,
+		prevPage = post?.id > 1 ? post?.id - 1 : posts?.length
 
 	const handlePageClose = () => {
 		router.push(`${routeBase}`)
@@ -25,80 +36,68 @@ const BlogPage = ({ posts, post, currentPage, prevPage, nextPage }) => {
 	}
 
 	// Should just render page
-	if (isMobile && currentPage) {
+	if (isMobile) {
 		return (
 			<>
-				<Head>
-					<title>{post.title} | Morgan Segura</title>
-				</Head>
-				<Page
-					path={routeBase}
-					page={post}
-					prevPageId={prevPage}
-					nextPageId={nextPage}
-					onClose={handlePageClose}
-					onChange={handlePageChange}>
-					<BlogPost post={post} />
-				</Page>
+				{post && (
+					<>
+						<Head>
+							<title>{post.title} | Morgan Segura</title>
+						</Head>
+						<Page
+							path={routeBase}
+							page={post}
+							prevPageId={prevPage}
+							nextPageId={nextPage}
+							onClose={handlePageClose}
+							onChange={handlePageChange}>
+							<BlogSingle
+								post={post}
+								error={error}
+								loading={loading}
+							/>
+						</Page>
+					</>
+				)}
 			</>
 		)
 	}
 
 	return (
 		<>
-			<Head>
-				<title>{post.title} | Morgan Segura</title>
-			</Head>
+			{post && (
+				<>
+					<Head>
+						<title>{post.title} | Morgan Segura</title>
+					</Head>
 
-			<BlogLanding posts={posts} />
+					<BlogLanding post={post} error={error} loading={loading} />
 
-			{currentPage ? (
-				<ContentModal
-					onClose={handlePageClose}
-					head={<PageHead page={post} onClose={handlePageClose} />}
-					ref={modalRef}>
-					<Page
-						path={routeBase}
-						page={post}
-						prevPageId={prevPage}
-						nextPageId={nextPage}
-						hasHead={false}
-						onChange={handlePageChange}>
-						<BlogPost raw={true} post={post} />
-					</Page>
-				</ContentModal>
-			) : null}
+					<ContentModal
+						onClose={handlePageClose}
+						head={
+							<PageHead page={post} onClose={handlePageClose} />
+						}
+						ref={modalRef}>
+						<Page
+							path={routeBase}
+							page={post}
+							prevPageId={prevPage}
+							nextPageId={nextPage}
+							hasHead={false}
+							onChange={handlePageChange}>
+							<BlogSingle
+								raw={true}
+								post={post}
+								error={error}
+								loading={loading}
+							/>
+						</Page>
+					</ContentModal>
+				</>
+			)}
 		</>
 	)
 }
 
-BlogPage.getInitialProps = async ({ query }) => {
-	let post = {},
-		posts = [],
-		lastPage,
-		currentPage,
-		nextPage,
-		prevPage
-	try {
-		const allPosts = await axios.get(
-			`https://jsonplaceholder.typicode.com/posts`
-		)
-
-		const res = await axios.get(
-			`https://jsonplaceholder.typicode.com/posts/${query.id}`
-		)
-		post = res.data
-		posts = allPosts.data.slice(0, 10)
-
-		currentPage = query.id
-		lastPage = posts.length
-		nextPage =
-			currentPage < posts.length ? Number(currentPage) + 1 : posts[0].id
-		prevPage = currentPage > 1 ? Number(currentPage) - 1 : lastPage
-	} catch (e) {
-		console.error(e, 'Cannot get blog details.')
-	}
-	return { posts, post, currentPage, nextPage, prevPage }
-}
-
-export default BlogPage
+export default BlogSinglePage

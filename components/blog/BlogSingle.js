@@ -3,7 +3,7 @@ import BaseLayout from '@components/support/layouts/BaseLayout'
 import Lane from '@components/support/structure/Lane'
 import Text from '@components/support/typography/Text'
 import { ucTitle } from '@utils/helpers'
-import styles from './PortfolioPost.module.scss'
+import styles from './BlogSingle.module.scss'
 
 const Content = ({ post }) => (
 	<>
@@ -17,7 +17,7 @@ const Content = ({ post }) => (
 	</>
 )
 
-const PortfolioPost = ({ post, raw = false }) => {
+const BlogSingle = ({ post, raw = false }) => {
 	useEffect(() => {
 		const getPosts = async () => {
 			const res = await fetch('/api/v1/posts')
@@ -40,4 +40,4 @@ const PortfolioPost = ({ post, raw = false }) => {
 	)
 }
 
-export default PortfolioPost
+export default BlogSingle

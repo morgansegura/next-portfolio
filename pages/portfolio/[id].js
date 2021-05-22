@@ -6,8 +6,8 @@ import Head from 'next/head'
 import ContentModal from '@support/modal/ContentModal'
 import Page from '@components/page/Page'
 import PageHead from '@components/page/PageHead'
-import PortfolioLanding from '@components/portfolio/PortfolioLanding'
-import PortfolioPost from '@components/portfolio/PortfolioPost'
+import PortfolioSingle from '@components/portfolio/PortfolioSingle'
+import PortfolioPost from '@components/portfolio/PortfolioSingle'
 import { useGetData } from '@/actions'
 
 const Portfolio = () => {
@@ -71,7 +71,7 @@ const Portfolio = () => {
 						<title>{post.title} | Morgan Segura</title>
 					</Head>
 
-					<PortfolioLanding
+					<PortfolioSingle
 						post={post}
 						error={error}
 						loading={loading}
