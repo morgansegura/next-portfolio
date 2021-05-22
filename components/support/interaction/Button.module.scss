@@ -1,89 +1,91 @@
 @import '~styles/utilities';
 
 .button {
-    display: inline-block;
-    padding: $sp-300 $sp-650;
-    border-radius: $radius;
-    cursor: pointer;
-    user-select: none;
+	display: inline-block;
+	padding: $sp-300 $sp-650;
+	border-radius: $radius;
+	cursor: pointer;
+	user-select: none;
+
+	transition: background-color 0.3s ease-out, color 0.3s ease-out;
 }
 
 // Variants
 
 .primary {
-    background-color: $primary-400;
-    color: $white;
+	background-color: $primary-400;
+	color: $white;
 }
 
 .primary:hover {
-    background-color: $primary-500;
+	background-color: $primary-500;
 }
 
 .primary:active {
-    background-color: $primary-700;
+	background-color: $primary-700;
 }
 
 .white {
-    background-color: $white;
+	background-color: $white;
 }
 
 .white:hover {
-    background-color: $grey-300;
+	background-color: $grey-300;
 }
 
 .white:active {
-    background-color: $grey-500;
+	background-color: $grey-500;
 }
 
 .darkgrey {
-    background-color: $grey-800;
-    color: $white;
+	background-color: $grey-800;
+	color: $white;
 }
 
 .darkgrey:hover {
-    background-color: $grey-900;
+	background-color: $grey-900;
 }
 
 .darkgrey:active {
-    background-color: $grey-1000;
+	background-color: $grey-1000;
 }
 
 .outline {
-    background-color: transparent;
-    border: 2px solid $black;
-    color: $black;
+	background-color: transparent;
+	border: 2px solid $black;
+	color: $black;
 }
 
 .outline:hover {
-    border-color: $grey-900;
-    color: $grey-900;
+	border-color: $grey-900;
+	color: $grey-900;
 }
 
 .outline:active {
-    border-color: $grey-575;
-    color: $grey-575;
+	border-color: $grey-575;
+	color: $grey-575;
 }
 
 .outline.grey {
-    border-color: $grey-575;
-    color: $grey-575;
+	border-color: $grey-575;
+	color: $grey-575;
 }
 
 .outline.grey:hover {
-    border-color: $grey-700;
-    color: $grey-700;
+	border-color: $grey-700;
+	color: $grey-700;
 }
 
 .outline.grey:active {
-    border-color: $black;
-    color: $black;
+	border-color: $black;
+	color: $black;
 }
 
 // Size Variants
 
 .large {
-    @include f500;
+	@include f500;
 
-    // Shrink padding to account for larger font size.
-    padding: $sp-150 $sp-400;
+	// Shrink padding to account for larger font size.
+	padding: $sp-150 $sp-400;
 }
