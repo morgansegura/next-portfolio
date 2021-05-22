@@ -36,70 +36,58 @@ const Portfolio = () => {
 	}
 
 	// Should just render page
-	if (isMobile) {
+	if (isMobile && post) {
 		return (
 			<>
-				{post && (
-					<>
-						<Head>
-							<title>{post.title} | Morgan Segura</title>
-						</Head>
-						<Page
-							path={routeBase}
-							page={post}
-							prevPageId={prevPage}
-							nextPageId={nextPage}
-							onClose={handlePageClose}
-							onChange={handlePageChange}>
-							<PortfolioPost
-								post={post}
-								error={error}
-								loading={loading}
-							/>
-						</Page>
-					</>
-				)}
+				<Head>
+					<title>{post?.title} | Morgan Segura</title>
+				</Head>
+				<Page
+					path={routeBase}
+					page={post}
+					prevPageId={prevPage}
+					nextPageId={nextPage}
+					onClose={handlePageClose}
+					onChange={handlePageChange}>
+					<PortfolioPost
+						post={post}
+						error={error}
+						loading={loading}
+					/>
+				</Page>
 			</>
 		)
 	}
 
 	return (
 		<>
-			{post && (
-				<>
-					<Head>
-						<title>{post.title} | Morgan Segura</title>
-					</Head>
+			<Head>
+				<title>{post?.title} | Morgan Segura</title>
+			</Head>
 
-					<PortfolioSingle
+			<PortfolioSingle post={post} error={error} loading={loading} />
+
+			<ContentModal
+				onClose={handlePageClose}
+				head={
+					post && <PageHead page={post} onClose={handlePageClose} />
+				}
+				ref={modalRef}>
+				<Page
+					path={routeBase}
+					page={post}
+					prevPageId={prevPage}
+					nextPageId={nextPage}
+					hasHead={false}
+					onChange={handlePageChange}>
+					<PortfolioPost
+						raw={true}
 						post={post}
 						error={error}
 						loading={loading}
 					/>
-
-					<ContentModal
-						onClose={handlePageClose}
-						head={
-							<PageHead page={post} onClose={handlePageClose} />
-						}
-						ref={modalRef}>
-						<Page
-							path={routeBase}
-							page={post}
-							prevPageId={prevPage}
-							nextPageId={nextPage}
-							hasHead={false}
-							onChange={handlePageChange}>
-							<PortfolioPost
-								raw={true}
-								post={post}
-								error={error}
-								loading={loading}
-							/>
-						</Page>
-					</ContentModal>
-				</>
-			)}
+				</Page>
+			</ContentModal>
 		</>
 	)
 }
