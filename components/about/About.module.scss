@@ -1,0 +1,11 @@
+@import '~styles/utilities';
+
+.title {
+	@include f600;
+
+	margin-top: $sp-600;
+
+	&::first-letter {
+		text-transform: capitalize;
+	}
+}

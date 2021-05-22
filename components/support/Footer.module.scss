@@ -1,0 +1,32 @@
+@import '~styles/utilities';
+
+.footer {
+    text-align: center;
+    padding: $sp-650 $sp-850;
+    background-color: $grey-800;
+
+    @include md {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.text,
+.link {
+    @include f0;
+
+    color: $white;
+}
+
+.text {
+    margin-bottom: $sp-150;
+
+    @include md {
+        margin-bottom: 0;
+    }
+}
+
+.link:not(:first-child) {
+    margin-left: $sp-650;
+}

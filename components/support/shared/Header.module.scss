@@ -1,0 +1,49 @@
+@import '@styles/utilities';
+
+.header {
+	background-color: $white;
+}
+
+.container {
+	display: flex;
+	padding-top: $sp-400;
+	padding-bottom: $sp-400;
+}
+
+.logo {
+	width: $sp-850;
+	height: $sp-850;
+	margin-right: $sp-400;
+
+	path {
+		fill: $grey-1100;
+		transition: fill 0.3s ease-out;
+	}
+
+	&:hover,
+	&:active {
+		path {
+			fill: $grey-600;
+		}
+	}
+}
+
+.nav {
+	flex: 1 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
+.navItem {
+	@include f250;
+
+	font-family: $font-heading;
+	font-weight: 600;
+	transition: opacity 0.3s ease-out;
+
+	@include hover {
+		opacity: 0.65;
+	}
+}

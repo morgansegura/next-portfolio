@@ -1,0 +1,57 @@
+@import '~styles/utilities';
+
+.container {
+    // Settings
+    --max-width: 100%;
+    --columns: 12;
+    --color: hsla(204, 80%, 72%, 0.25);
+    --offset: var(--lane-gutter);
+
+    // Base
+    --repeating-width: calc(100% / var(--columns));
+    --column-width: calc((100% / var(--columns)) - var(--grid-gutter));
+    --background-width: calc(100% + var(--grid-gutter));
+    --background-columns:
+        repeating-linear-gradient(
+            to right,
+            var(--color),
+            var(--color) var(--column-width),
+            transparent var(--column-width),
+            transparent var(--repeating-width)
+        );
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: calc(100% - (2 * var(--offset)));
+    max-width: var(--max-width);
+    background-image: var(--background-columns);
+    background-size: var(--background-width) 100%;
+    z-index: 1000;
+    pointer-events: none;
+
+    @include md {
+        --offset: 16px;
+        --max-width: #{$lane-md};
+        --columns: 12;
+        --color: hsla(204, 80%, 72%, 0.25);
+    }
+
+    @include lg {
+        --offset: 16px;
+        --max-width: #{$lane-lg};
+        --columns: 12;
+        --color: hsla(204, 80%, 72%, 0.25);
+    }
+
+    @include xl {
+        --offset: 0;
+        --max-width: #{$lane-xl};
+        --columns: 12;
+        --color: hsla(204, 80%, 72%, 0.25);
+    }
+}

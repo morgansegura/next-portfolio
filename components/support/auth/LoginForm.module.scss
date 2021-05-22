@@ -1,0 +1,27 @@
+@import '~styles/utilities';
+
+.intro {
+    margin-bottom: $sp-400;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: $sp-650;
+}
+
+.link {
+    @include f200;
+
+    font-weight: bold;
+    color: $primary-400;
+}
+
+.link:hover {
+    color: $primary-500;
+}
+
+.link:active {
+    color: $primary-700;
+}

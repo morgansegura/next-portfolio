@@ -1,0 +1,45 @@
+@import '~styles/utilities';
+
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: -1px; // Fix little gap at bottom
+	left: 0;
+	background-color: transparentize($grey-1100, 0.2);
+	overflow: auto;
+	z-index: 1;
+}
+
+.content {
+	position: relative;
+	max-width: 1006px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	border-radius: $radius;
+	background-color: $white;
+
+	@include md {
+		width: calc(100% - #{$sp-850 * 2});
+		margin-top: $sp-650;
+		margin-bottom: $sp-650;
+	}
+
+	@include xl {
+		margin-top: 104px;
+		margin-bottom: 202px;
+	}
+}
+
+.head {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.headFixed {
+	position: fixed;
+}

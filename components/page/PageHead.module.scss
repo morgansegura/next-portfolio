@@ -1,0 +1,42 @@
+@import '~styles/utilities';
+
+.head {
+    @include f300;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: $page-head-height;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(48, 49, 51, 0.1);
+    background-color: $white;
+}
+
+.headEmbedded {
+    position: absolute;
+}
+
+.text {
+    flex: 1;
+    padding: $sp-300 $sp-400;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.close {
+    height: 100%;
+    min-width: $page-head-height;
+    padding: $sp-325 $sp-400;
+    cursor: pointer;
+}
+
+.close:hover {
+    background-color: $grey-300;
+}
+
+.close:active {
+    background-color: $grey-500;
+}

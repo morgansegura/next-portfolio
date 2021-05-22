@@ -1,0 +1,5 @@
+@import '~styles/utilities';
+
+.group > *:not(:last-child) {
+    margin-bottom: $sp-400;
+}

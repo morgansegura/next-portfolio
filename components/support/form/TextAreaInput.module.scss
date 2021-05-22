@@ -1,0 +1,25 @@
+@import '~styles/utilities';
+
+.textarea {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.textareaContainer {
+    position: relative;
+    display: flex;
+}
+
+.textareaSaved {
+    @include f300;
+}
+
+.count {
+    @include f200;
+
+    color: #959595;
+    position: absolute;
+    right: $sp-650;
+    bottom: $sp-500;
+}

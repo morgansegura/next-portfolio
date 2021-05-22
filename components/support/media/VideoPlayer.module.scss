@@ -1,0 +1,39 @@
+@import '~styles/utilities';
+
+.container {
+    position: relative;
+    cursor: pointer;
+}
+
+.containerPlayed {
+    cursor: auto;
+}
+
+.player {
+    width: 100%;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97px;
+    height: 97px;
+    transform: translate(-50%, -50%);
+    background-color: $primary-400;
+    border-radius: 50%;
+}

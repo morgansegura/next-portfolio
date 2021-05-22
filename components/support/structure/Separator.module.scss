@@ -1,0 +1,8 @@
+@import '~styles/utilities';
+
+.separator {
+    margin-top: $sp-400;
+    margin-bottom: $sp-400;
+    border: 0;
+    border-top: 1px solid $grey-200;
+}

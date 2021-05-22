@@ -1,0 +1,22 @@
+@import '~styles/utilities';
+
+.container {
+    display: block;
+}
+
+.input {
+    @include f250;
+
+    width: 100%;
+    padding: $sp-150 $sp-400;
+    border: 1px solid $grey-450;
+    border-radius: $radius;
+}
+
+.inputError {
+    border: 2px solid $warning-500;
+}
+
+.error {
+    color: $warning-500;
+}

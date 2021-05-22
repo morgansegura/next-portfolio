@@ -1,0 +1,23 @@
+@import '~styles/utilities';
+
+.lane {
+    display: grid;
+    grid-template-columns: [full-start] var(--lane-gutter) [main-start] minmax(0, auto) [main-end] var(--lane-gutter) [full-end];
+
+    @include md {
+        display: grid;
+        grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, #{$lane-md}) [main-end] minmax(1em, 1fr) [full-end];
+    }
+
+    @include lg {
+        grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, #{$lane-lg}) [main-end] minmax(1em, 1fr) [full-end];
+    }
+
+    @include xl {
+        grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, #{$lane-xl}) [main-end] minmax(1em, 1fr) [full-end];
+    }
+}
+
+.lane > * {
+    grid-area: main;
+}

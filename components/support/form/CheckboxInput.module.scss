@@ -1,0 +1,55 @@
+@import '~styles/utilities';
+
+.checkbox {
+    @include f300;
+
+    display: flex;
+}
+
+.checkboxInput {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: $sp-250;
+
+    input[type='checkbox'] {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        -o-appearance: none;
+        cursor: pointer;
+        border: 1px solid $grey-300;
+        border-radius: 2px;
+        width: 14px;
+        height: 14px;
+    }
+
+    svg.check {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        pointer-events: none;
+        width: 9px;
+        height: 9px;
+        transform: translateX(1px);
+
+        g,
+        path {
+            fill: $white;
+        }
+    }
+
+    input[type='checkbox']:checked ~ svg.check {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+    }
+
+    input[type='checkbox']:checked {
+        position: relative;
+        font-size: 30px;
+        background-color: $primary-400;
+        border-color: $primary-400;
+    }
+}
