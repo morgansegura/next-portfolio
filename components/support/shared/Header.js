@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Logo from '@support/icons/Logo'
 import Lane from '@support/structure/Lane'
-import Text from '@support/typography/Text'
+import AuthNav from '@support/shared/AuthNav'
 import styles from './Header.module.scss'
 
 const Header = () => {
@@ -43,6 +43,7 @@ const Header = () => {
 							</Link>
 						))}
 					</nav>
+					<AuthNav />
 				</div>
 			</Lane>
 		</header>

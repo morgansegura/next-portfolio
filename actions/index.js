@@ -12,5 +12,6 @@ const fetcher = url =>
 	})
 
 export const useGetData = url => {
-	return useSWR(url, fetcher)
+	const { data, error, ...props } = useSWR(url, fetcher)
+	return { data, error, loading: !data && !error, ...props }
 }
